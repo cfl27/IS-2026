@@ -15,5 +15,3 @@ while True:
     cliente.sendto(datagrama.encode(), (host, puerto))
 
     contador += 1
-
-    cliente.recvfrom(host,puerto)

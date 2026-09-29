@@ -1,7 +1,11 @@
 import socket
+import sys
 
-host = "localhost"
-puerto = 9999
+if len(sys.argv) > 1:
+    ip = sys.argv[1]
+
+else: 
+    ip = "localhost"
 
 cliente = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 

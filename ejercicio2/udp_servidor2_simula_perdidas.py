@@ -10,7 +10,7 @@ else:
 
 
 servidor = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-servidor.bind((host, puerto))
+servidor.bind(("", puerto))
 
 print("Servidor UDP esperando mensajes...")
 

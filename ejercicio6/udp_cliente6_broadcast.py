@@ -44,23 +44,23 @@ while True:
     except socket.timeout:
         break
 
-    # si al menos uno responde, usamos el primero
-    if primer_servidor is not None:
-        mensaje = "HOLA"
+# si al menos uno responde, usamos el primero
+if primer_servidor is not None:
+    mensaje = "HOLA"
 
-        cliente.sendto(mensaje.encode("utf-8"), (primer_servidor, puerto))
+    cliente.sendto(mensaje.encode("utf-8"), (primer_servidor, puerto))
 
-        # ya no necesitamos el timeout para esta parte
-        cliente.settimeout(None)
+    # ya no necesitamos el timeout para esta parte
+    cliente.settimeout(None)
 
-        # esperamos la respuesta del servidor elegido
-        datagrama, origen = cliente.recvfrom(1024)
+    # esperamos la respuesta del servidor elegido
+    datagrama, origen = cliente.recvfrom(1024)
 
-        mensaje = datagrama.decode("utf-8")
+    mensaje = datagrama.decode("utf-8")
 
-        print("Respuesta del servidor: ", mensaje)
+    print("Respuesta del servidor: ", mensaje)
 
-    else:
-        print("No se ha encontrado ningún servidor HOLA")
+else:
+    print("No se ha encontrado ningún servidor HOLA")
 
 cliente.close()

@@ -16,3 +16,5 @@ while True:
         print("Simulando paquete perdido")
     else:
         print(datos.decode())
+        servidor.sendto("OK".encode("utf-8"), direccion)
+        

@@ -1,7 +1,7 @@
 import socket
 
 host = "localhost"
-puerto = 5000
+puerto = 9999
 
 cliente = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
@@ -15,5 +15,3 @@ while True:
     cliente.sendto(datagrama.encode(), (host, puerto))
 
     contador += 1
-
-    cliente.recvfrom(host,puerto)

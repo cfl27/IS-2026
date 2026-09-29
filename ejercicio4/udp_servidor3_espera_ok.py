@@ -1,11 +1,16 @@
 import socket
+import sys
 import random
 
-host = "localhost"
-puerto = 9999
+if len(sys.argv) > 1:
+    puerto = int(sys.argv[1])
+
+else: 
+    puerto = 9999
+
 
 servidor = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-servidor.bind((host, puerto))
+servidor.bind(("", puerto))
 
 print("Servidor UDP esperando mensajes...")
 

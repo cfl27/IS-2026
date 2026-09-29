@@ -39,8 +39,10 @@ while True:
             respuesta, origen = cliente.recvfrom(1024)
             respuesta = respuesta.decode("utf-8")
 
-            confirmación = "OK" + str(contador)
+            # esta es la confirmacion que esperamos recibir
+            confirmacion = "OK" + str(contador)
 
+            # comprobamos qu eel OK coresponde al datagrama enviado
             if respuesta == confirmacion:
                 print("Recibida confirmación", respuesta)
                 confirmado = True

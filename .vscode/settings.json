@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./sesion2-1/hola_flask/hola_"
+    ]
+}

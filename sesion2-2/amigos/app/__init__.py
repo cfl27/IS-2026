@@ -16,9 +16,10 @@ def create_app(config_name):
     migrate = Migrate(app, db)
 
     from .html import html as html_blueprint
-    app.register_blueprint(
-        html_blueprint,
-        url_prefix='/html'
-    )
+    app.register_blueprint(html_blueprint, url_prefix='/html')
+
+    from .api import api as api_blueprint
+    app.register_blueprint(api_blueprint, url_prefix='/api')
+
 
     return app

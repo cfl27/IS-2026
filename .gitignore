@@ -1,2 +1,4 @@
 basedatos/
-
+instance/
+__pycache__/
+*.pyc

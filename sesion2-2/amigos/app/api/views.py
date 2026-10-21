@@ -11,7 +11,8 @@ def get_amigo(id):
     """
     amigo = Amigo.query.get_or_404(id)
     amigodict = {'id': amigo.id, 'name': amigo.name,
-                 'lati': amigo.lati, 'longi': amigo.longi}
+                 'lati': amigo.lati, 'longi': amigo.longi,
+                 'device': amigo.device}
     return jsonify(amigodict)
 
 @api.route("/amigo/byName/<name>")
@@ -24,7 +25,8 @@ def get_amigo_by_name(name):
     if not amigo:
         abort(404, "No se encuentra ningún amigo con ese nombre")
     amigodict = {'id': amigo.id, 'name': amigo.name,
-                 'lati': amigo.lati, 'longi': amigo.longi}
+                 'lati': amigo.lati, 'longi': amigo.longi,
+                 'device': amigo.device}
     return jsonify(amigodict)
 
 @api.route("/amigos")
@@ -42,7 +44,8 @@ def list_amigos():
             "id": amigo.id,
             "name": amigo.name,
             "lati": amigo.lati,
-            "longi": amigo.longi
+            "longi": amigo.longi,
+            "device": amigo.device
         }
 
         lista.append(amigodict)
@@ -68,6 +71,8 @@ def edit_amigo(id):
     name = request.json.get("name")
     lati = request.json.get("lati")
     longi = request.json.get("longi")
+    device = request.json.get("device")
+    
     # Usamos los campos que estén presentes para actualizar el objeto amigo
     if name:
         amigo.name = name
@@ -75,15 +80,18 @@ def edit_amigo(id):
         amigo.lati = lati
     if longi:
         amigo.longi = longi
+    if device is not None:
+        amigo.device = device
 
     # Finalmente, si hemos cambiado algo en el objeto amigo, hacemos
     # el commit a la base de datos para que se guarden las modificaciones
-    if name or lati or longi:
+    if name or lati or longi or device is not None:
         db.session.commit()
 
     # Y retornamos el JSON con los nuevos datos
     amigodict = {"id": amigo.id, "name": amigo.name,
-                 "longi": amigo.longi, "lati": amigo.lati }
+                 "longi": amigo.longi, "lati": amigo.lati,
+                 "device": amigo.device}
     return jsonify(amigodict)
 
 @api.route("/amigo/<int:id>", methods=["DELETE"])
@@ -139,3 +147,17 @@ def new_amigo():
     amigodict = {"id": amigo.id, "name": amigo.name,
                  "longi": amigo.longi, "lati": amigo.lati }
     return jsonify(amigodict)
+
+@api.route("/devices")
+def get_devices():
+    amigos = Amigo.query.filter(
+        Amigo.device.isnot(None),
+        Amigo.device != ""
+    ).all()
+
+    devices = []
+
+    for amigo in amigos:
+        devices.append(amigo.device)
+
+    return jsonify(devices)

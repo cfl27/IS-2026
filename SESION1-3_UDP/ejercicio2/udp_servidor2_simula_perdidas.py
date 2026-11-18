@@ -16,7 +16,7 @@ print("Servidor UDP esperando mensajes...")
 
 while True:
     datagrama, direccion = servidor.recvfrom(1024)
-    mensaje = datagrama.dercode("utf-8")
+    mensaje = datagrama.decode("utf-8")
 
     # para simular la perdida...
     # elegimos aleatorio entre 0 y 1
@@ -26,5 +26,5 @@ while True:
     
     # si sale 1, mensaje normal
     else:
-        print("Recibido desde: ", origen)
+        print("Recibido desde: ", direccion)
         print(mensaje)

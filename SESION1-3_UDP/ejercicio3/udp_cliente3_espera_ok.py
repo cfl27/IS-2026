@@ -23,7 +23,7 @@ while True:
 
     datagrama = str(contador) + ": " + mensaje
 
-    cliente.sendto(datagrama.encode(), (host, puerto))
+    cliente.sendto(datagrama.encode(), (ip, puerto))
 
     cliente.settimeout(0.1) # espero por el OK
 

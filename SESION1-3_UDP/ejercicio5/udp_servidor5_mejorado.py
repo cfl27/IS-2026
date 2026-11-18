@@ -32,5 +32,5 @@ while True:
         confirmacion = "OK" + identificador
 
         # enviamos confirmacion al cliente
-        servidor.sendto(confirmacion.encode("utf-8"), direccion)
+        servidor.sendto(confirmacion.encode("utf-8"), origen)
         

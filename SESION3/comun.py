@@ -13,7 +13,7 @@ def obtener_clave():
 
 
 def importar_telnetlib():
-       try:
+    try:
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", DeprecationWarning)
             import telnetlib
